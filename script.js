@@ -1,41 +1,39 @@
-const container = document.getElementById("container");
-container.style.display = "flex";
-container.style.flexWrap = "wrap";
-container.style.width = "160px";
+// houses all the 'divs'
+const container = document.querySelector("#container");
 
-const container2 = document.getElementById("container-2");
-container.style.display = "flex";
-container.style.flexWrap = "wrap";
-container.style.width = "160px";
-
+// default grid
 for(let i = 0; i < 256; i++){
-    const square = document.createElement("div");
-    square.style.width = "10px";
-    square.style.height = "10px";
-    square.style.backgroundColor = "black";
-    // square.style.margin = "10px";
+        const square = document.createElement("div");
+        square.classList.add("grid-square");
 
-    square.addEventListener("mouseover", () =>{
-        square.style.backgroundColor = "limeGreen";
-    });
+        square.addEventListener('mouseover', () => {
+            square.style.backgroundColor = "red";
+        })
 
-    container.appendChild(square);
-    
+        container.appendChild(square);
+    }
+
+// Creates a new grid based on userInput: remove the old(reset) -> for-loop makes a new grid
+function createGrid(input){
+    container.innerHTML = "";
+    let inputSquared = Math.pow(input, 2);
+
+    for(let i = 0; i < inputSquared; i++){
+        const square = document.createElement("div");
+        square.classList.add("grid-square");
+
+        square.addEventListener('mouseover', () => {
+            square.style.backgroundColor = "red";
+        })
+
+        container.appendChild(square);
+    }
 }
-for(let i = 0; i < 256; i++){
-    const square = document.createElement("div");
-    square.style.width = "10px";
-    square.style.height = "10px";
-    square.style.backgroundColor = "black";
-    // square.style.margin = "10px";
 
-    square.addEventListener("mouseover", () =>{
-        square.style.backgroundColor = "yellow";
-    });
-
-    container.appendChild(square);
-    
-}
+const btn = document.querySelector("button");
+btn.addEventListener("click", () => {
+    createGrid(16);
+})
 
 
 
